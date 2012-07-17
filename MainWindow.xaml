@@ -1,0 +1,23 @@
+﻿<Window x:Class="GitHistory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:GitHistory="clr-namespace:GitHistory"
+        xmlns:SearchControl="clr-namespace:GitHistory.SearchControl"
+        xmlns:CommitBox="clr-namespace:GitHistory.CommitBox" Title="MainWindow"  Loaded="WindowLoaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200px" />
+            
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <SearchControl:SearchBox x:Name="searchBoxControl" />
+            <CommitBox:CommitBoxControl x:Name="commitBoxControl" Grid.Row="1" />
+        </Grid>
+        <WebBrowser  x:Name="webBrowserControl" Grid.Column="1" >
+        </WebBrowser>
+    </Grid>
+</Window>
