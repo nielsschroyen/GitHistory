@@ -35,8 +35,9 @@ namespace GitHistory.CommitBox
         {
             get { return selectedCommit; }
             set { selectedCommit = value;
-                if (OnSelectedCommitChanged != null)
+                if (OnSelectedCommitChanged != null && value != null)
                 {
+
                     OnSelectedCommitChanged(this, new CommitChangedEventArgs(SelectedCommit));
                 }
             }

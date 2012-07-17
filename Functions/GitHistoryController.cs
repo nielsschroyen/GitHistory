@@ -11,6 +11,7 @@ namespace GitHistory.Functions
        private readonly SearchBox searchBoxControl;
        private readonly CommitBoxControl commitBoxControl;
        private readonly GitManager gitManager;
+       private CommitBoxViewModel commitBoxviewModel;
 
        public GitHistoryController(WebBrowser webBrowserControl, SearchBox searchBoxControl, CommitBoxControl commitBoxControl)
        {
@@ -27,7 +28,7 @@ namespace GitHistory.Functions
 
        private void InitCommitBox()
        {
-           var commitBoxviewModel = new CommitBoxViewModel(gitManager.Commits);
+           commitBoxviewModel = new CommitBoxViewModel(gitManager.Commits);
            commitBoxviewModel.OnSelectedCommitChanged += SelectedCommitChanged;
            commitBoxControl.DataContext = commitBoxviewModel;
        }
@@ -44,7 +45,8 @@ namespace GitHistory.Functions
 
        void Search(object sender, SearchEventArgs e)
        {
-           gitManager.SearchCommits(e.CommitFilter);
+           var searchCommits = gitManager.SearchCommits(e.CommitFilter);
+           commitBoxviewModel.Commits = searchCommits;
        }
 
        void SelectedCommitChanged(object sender, CommitChangedEventArgs commitChangedEventArgs)

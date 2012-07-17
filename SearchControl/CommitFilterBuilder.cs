@@ -27,16 +27,16 @@ namespace GitHistory.SearchControl
 
        private bool ContainsComment(Commit commit)
        {
-           if (comment != "")
+           if (!string.IsNullOrEmpty(comment))
            {
-               return commit.Message.ToLower().Contains(comment.ToLower());
+               return commit.Message.ToLower().Contains(comment.ToLower()) || commit.MessageShort.ToLower().Contains(comment.ToLower()); ;
            }
            return true;
        }
 
        private bool ContainsUser(Commit commit)
        {
-           if (user != "")
+           if (!string.IsNullOrEmpty(user))
            {
                return commit.Committer.Name.Equals(user);
            }
