@@ -32,7 +32,6 @@ namespace GitHistory.SearchControl
                return commit.Message.ToLower().Contains(comment.ToLower());
            }
            return true;
-
        }
 
        private bool ContainsUser(Commit commit)

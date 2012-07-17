@@ -9,13 +9,17 @@
         <ListBox SelectedItem="{Binding SelectedCommit}" ItemsSource="{Binding Commits}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <StackPanel   Orientation="Vertical">
+                        
                         <TextBlock>
                             <Run Text="{Binding Committer.Name, Mode=OneWay}" />
                              <Run Text="  " />    
+                            <Run Text="{Binding Committer.When,  Mode=OneWay}" />
+                        </TextBlock>
+                        <TextBlock> 
                             <Run Text="{Binding Message,  Mode=OneWay}" />
                         </TextBlock>
-                    </Grid>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
