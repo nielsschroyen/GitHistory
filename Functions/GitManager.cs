@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using LibGit2Sharp;
 
-namespace GitHistory
+namespace GitHistory.Functions
 {
     public class GitManager
     {

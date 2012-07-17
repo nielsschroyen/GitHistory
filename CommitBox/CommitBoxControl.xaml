@@ -6,6 +6,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <ListBox SelectedItem="{Binding SelectedCommit}" ItemsSource="{Binding Commits}" />
+        <ListBox SelectedItem="{Binding SelectedCommit}" ItemsSource="{Binding Commits}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock>
+                            <Run Text="{Binding Committer.Name, Mode=OneWay}" />
+                             <Run Text="  " />    
+                            <Run Text="{Binding Message,  Mode=OneWay}" />
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

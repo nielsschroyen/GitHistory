@@ -2,19 +2,29 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using GitHistory.Functions;
 using LibGit2Sharp;
 
 namespace GitHistory.CommitBox
 {
-    public class CommitBoxViewModel:INotifyPropertyChanged
+    public class CommitBoxViewModel:NotifyPropertyChangedBase
     {
         private List<Commit> commits;
         private Commit selectedCommit;
 
         public delegate void SelectedCommitChanged(object sender, CommitChangedEventArgs e);
 
+        public List<Commit> Commits
+        {
+            get { return commits; }
+            set
+            {
+                commits = value;
+                NotifyPropertyChanged(() => Commits);
+            }
+        }
+
         public event SelectedCommitChanged OnSelectedCommitChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public CommitBoxViewModel(List<Commit> commits )
         {

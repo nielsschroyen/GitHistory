@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using GitHistory.CommitBox;
 using GitHistory.SearchControl;
 
-namespace GitHistory
+namespace GitHistory.Functions
 {
    public class GitHistoryController
     {
@@ -17,7 +17,7 @@ namespace GitHistory
            this.webBrowserControl = webBrowserControl;
            this.searchBoxControl = searchBoxControl;
            this.commitBoxControl = commitBoxControl;
-           this.webBrowserControl.Navigate(@"http://www.hoogmaatheide.be");
+           this.webBrowserControl.Navigate(@"https://github.com/nielsschroyen/GitHistory/commit/8ae80bdbdde857590f51738713300773de4ff22e");
 
            gitManager = new GitManager(@"C:/git/wave");
 
@@ -49,7 +49,7 @@ namespace GitHistory
 
        void SelectedCommitChanged(object sender, CommitChangedEventArgs commitChangedEventArgs)
        {
-       //    gitManager.SearchCommits(e.CommitFilter);
+           webBrowserControl.Navigate(WebCommitBuilder.CreateGitWebUrl(commitChangedEventArgs.Commit));
        }
     }
 }
