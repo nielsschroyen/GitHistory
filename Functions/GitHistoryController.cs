@@ -19,7 +19,7 @@ namespace GitHistory.Functions
            this.commitBoxControl = commitBoxControl;
            this.webBrowserControl.Navigate(@"https://github.com/nielsschroyen/GitHistory/commit/8ae80bdbdde857590f51738713300773de4ff22e");
 
-           gitManager = new GitManager(@"C:/git/wave");
+           gitManager = new GitManager();
 
            InitSearchBox();
            InitCommitBox();

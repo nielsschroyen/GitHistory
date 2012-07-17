@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GitHistory.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WebLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/nielsschroyen/GitHistory</Value>
+    </Setting>
+    <Setting Name="LocalGit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Niels Schroyen\Documents\Visual Studio 2010\Projects\GitHistory\GitHistory</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -7,7 +7,13 @@ namespace GitHistory.Functions
 
        public static string CreateGitWebUrl(Commit commit)
        {
-           return @"https://github.com/nielsschroyen" + "/GitHistory/commit/" + commit.Sha;
+
+           return WebAddress + "/commit/" + commit.Sha;
+       }
+
+       public static string WebAddress
+       {
+           get { return Properties.Settings.Default.WebLocation; }
        }
     }
 }

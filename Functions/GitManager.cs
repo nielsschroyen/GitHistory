@@ -7,31 +7,25 @@ namespace GitHistory.Functions
 {
     public class GitManager
     {
-        private readonly string repositoryLocation;
-
-
-        public GitManager(string gitLocal)
-        {
-            repositoryLocation = gitLocal;
-        }
-
-
+  
         public List<string> Users
         {
             get
             {
-                using (var repo = new Repository(repositoryLocation))
+                using (var repo = new Repository(RepositoryLocation))
                 {
                     return repo.Head.Commits.Select(commit => commit.Committer.Name).Distinct().ToList();
                 }
             }
         }
 
+        private string RepositoryLocation { get { return Properties.Settings.Default.LocalGit; } }
+
         public List<Commit> Commits
         {
             get
             {
-                using (var repo = new Repository(repositoryLocation))
+                using (var repo = new Repository(RepositoryLocation))
                 {
                     return repo.Head.Commits.ToList();
                 }
@@ -40,7 +34,7 @@ namespace GitHistory.Functions
 
         public List<Commit> SearchCommits(Func<Commit, bool>  filter)
         {
-            using (var repo = new Repository(repositoryLocation))
+            using (var repo = new Repository(RepositoryLocation))
             {
               return  repo.Head.Commits.Where(filter).ToList();
             }
