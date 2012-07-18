@@ -5,19 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style  TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="White"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#19000000"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <ListBox SelectedItem="{Binding SelectedCommit}" ItemsSource="{Binding Commits}" >
+        <ListBox SelectedItem="{Binding SelectedCommit}" ItemsSource="{Binding Commits}" AlternationCount="2" BorderThickness="0" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel   Orientation="Vertical">
+                    <StackPanel   Orientation="Vertical" Margin="5 5 0 5">
                         
-                        <TextBlock>
+                        <TextBlock FontWeight="Bold">
                             <Run Text="{Binding Committer.Name, Mode=OneWay}" />
                              <Run Text="  " />    
                             <Run Text="{Binding Committer.When,  Mode=OneWay}" />
                         </TextBlock>
                         <TextBlock> 
-                            <Run Text="{Binding Message,  Mode=OneWay}" />
+                            <Run Text="{Binding MessageShort,  Mode=OneWay}" />
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>

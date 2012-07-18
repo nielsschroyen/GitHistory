@@ -10,8 +10,8 @@
 
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Search history"  Margin="0 0 0 5" FontSize="17" FontWeight="Bold" VerticalAlignment="Center" />
-            <Button  Margin="0 0 0 5" Content="Search"  Click="SearchClicked"/>
-            <Button  Margin="0 0 0 5" Content="Settings"  Click="SettingsClicked"/>
+            <Button  Margin="15 0 0 5" Content="Search"  Click="SearchClicked"/>
+            <Button  Margin="15 0 0 5" Content="Settings"  Click="SettingsClicked"/>
         </StackPanel>
 
         <Grid>

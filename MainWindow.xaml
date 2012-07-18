@@ -5,19 +5,28 @@
         xmlns:CommitBox="clr-namespace:GitHistory.CommitBox" Title="Git Commit History"  Loaded="WindowLoaded" Icon="github.ico">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200px" />
-            
+            <ColumnDefinition Width="300px" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Margin="5">
+        <GridSplitter  
+            ResizeDirection="Columns"
+            Grid.Column="1"
+            Width="3"
+            Height="auto"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Margin="0"/>
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
+               <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <SearchControl:SearchBox x:Name="searchBoxControl" />
+
+            <SearchControl:SearchBox x:Name="searchBoxControl" Margin="5" />
             <CommitBox:CommitBoxControl x:Name="commitBoxControl" Grid.Row="1" />
         </Grid>
-        <WebBrowser  x:Name="webBrowserControl" Grid.Column="1" >
+        <WebBrowser  x:Name="webBrowserControl" Grid.Column="2" >
         </WebBrowser>
     </Grid>
 </Window>

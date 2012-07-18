@@ -37,8 +37,6 @@ namespace GitHistory.SearchControl
             {
                 searchBoxViewModel.SettingsClick();
             }
-           
-
         }
 
         private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
