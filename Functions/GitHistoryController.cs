@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using GitHistory.CommitBox;
 using GitHistory.SearchControl;
 using GitHistory.Settings;
@@ -54,6 +56,11 @@ namespace GitHistory.Functions
 
        void OpenSettings(object sender, System.EventArgs e)
        {
+           var bitmap = new BitmapImage();
+           bitmap.BeginInit();
+           bitmap.UriSource = new Uri("pack://application:,,,/GitHistory;component/GitHub.ico");
+           bitmap.EndInit();
+
            var settingsControlViewModel = new SettingsControlViewModel();
            var window = new Window
                             {
@@ -61,7 +68,8 @@ namespace GitHistory.Functions
                                 Title = "Settings",
                                 Width = 420,
                                 Height = 140,
-                                ResizeMode = ResizeMode.NoResize
+                                ResizeMode = ResizeMode.NoResize,
+                                Icon = bitmap
                             };
            window.Show();
            window.Activate();
