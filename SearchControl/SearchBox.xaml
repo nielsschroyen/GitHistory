@@ -24,9 +24,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Text="User:" Margin="0 0 5 5" VerticalAlignment="Center" />
-        <ComboBox SelectedValue="{Binding SelectedUser}" ItemsSource="{Binding Users}" Grid.Column="1" Margin="0 0 0 5"  />
+        <ComboBox SelectedValue="{Binding SelectedUser}" ItemsSource="{Binding Users}" Grid.Column="1" Margin="0 0 0 5"  SelectionChanged="ComboBoxSelectionChanged"  />
         <TextBlock Text="Comment:" Grid.Row="1" Margin="0 0 5 0" VerticalAlignment="Center" />
-        <TextBox Text="{Binding Comment}" Grid.Row="1" Grid.Column="1"/>
+            <TextBox Text="{Binding Comment}" Grid.Row="1" Grid.Column="1" KeyUp="ComboBoxKeyUp"/>
 
     </Grid>
     </StackPanel>
