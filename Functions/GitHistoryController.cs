@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using GitHistory.CommitBox;
 using GitHistory.SearchControl;
+using GitHistory.Settings;
 
 namespace GitHistory.Functions
 {
@@ -18,10 +20,16 @@ namespace GitHistory.Functions
            this.webBrowserControl = webBrowserControl;
            this.searchBoxControl = searchBoxControl;
            this.commitBoxControl = commitBoxControl;
-           this.webBrowserControl.Navigate(@"https://github.com/nielsschroyen/GitHistory/commit/8ae80bdbdde857590f51738713300773de4ff22e");
-
            gitManager = new GitManager();
 
+           Init();
+
+       }
+
+       private void Init()
+       {
+           webBrowserControl.Navigate(gitManager.RepositoryLocation);
+           
            InitSearchBox();
            InitCommitBox();
        }
@@ -40,7 +48,30 @@ namespace GitHistory.Functions
            users.AddRange(gitManager.Users);
            var searchBoxViewModel = new SearchBoxViewModel(users);
            searchBoxViewModel.Search += Search;
+           searchBoxViewModel.OpenSettings += OpenSettings;
            searchBoxControl.DataContext = searchBoxViewModel;
+       }
+
+       void OpenSettings(object sender, System.EventArgs e)
+       {
+           var settingsControlViewModel = new SettingsControlViewModel();
+           var window = new Window
+                            {
+                                Content = new SettingsControl {DataContext = settingsControlViewModel},
+                                Title = "Settings",
+                                Width = 420,
+                                Height = 140,
+                                ResizeMode = ResizeMode.NoResize
+                            };
+           window.Show();
+           window.Activate();
+
+           settingsControlViewModel.Saved += SettingsSaved;
+       }
+
+       void SettingsSaved(object sender, System.EventArgs e)
+       {
+           Init();
        }
 
        void Search(object sender, SearchEventArgs e)
@@ -53,5 +84,7 @@ namespace GitHistory.Functions
        {
            webBrowserControl.Navigate(WebCommitBuilder.CreateGitWebUrl(commitChangedEventArgs.Commit));
        }
+
+
     }
 }

@@ -19,7 +19,7 @@ namespace GitHistory.Functions
             }
         }
 
-        private string RepositoryLocation { get { return Properties.Settings.Default.LocalGit; } }
+        public string RepositoryLocation { get { return Properties.Settings.Default.LocalGit; } }
 
         public List<Commit> Commits
         {
@@ -27,7 +27,7 @@ namespace GitHistory.Functions
             {
                 using (var repo = new Repository(RepositoryLocation))
                 {
-                    return repo.Head.Commits.ToList();
+                   return repo.Head.Commits.ToList();
                 }
             }
         }

@@ -88,6 +88,10 @@
     </Compile>
     <Compile Include="SearchControl\SearchBoxViewModel.cs" />
     <Compile Include="SearchControl\SearchEventArgs.cs" />
+    <Compile Include="Settings\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsControlViewModel.cs" />
     <Page Include="CommitBox\CommitBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +111,10 @@
     <Page Include="SearchControl\SearchBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\SettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

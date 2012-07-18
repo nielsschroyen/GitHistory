@@ -1,5 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using GitHistory.Settings;
 
 namespace GitHistory.SearchControl
 {
@@ -16,10 +18,21 @@ namespace GitHistory.SearchControl
         private void SearchClicked(object sender, RoutedEventArgs e)
         {
             var searchBoxViewModel = DataContext as SearchBoxViewModel;
-            if(searchBoxViewModel != null)
+            if (searchBoxViewModel != null)
             {
                 searchBoxViewModel.DoSearch();
             }
+        }
+
+        private void SettingsClicked(object sender, RoutedEventArgs e)
+        {
+            var searchBoxViewModel = DataContext as SearchBoxViewModel;
+            if (searchBoxViewModel != null)
+            {
+                searchBoxViewModel.SettingsClick();
+            }
+           
+
         }
     }
 }

@@ -9,8 +9,10 @@ namespace GitHistory.SearchControl
         private readonly List<string> users;
 
         public delegate void SearchClicked(object sender, SearchEventArgs e);
-
         public event SearchClicked Search;
+
+        public delegate void SettingsClicked(object sender, EventArgs e);
+        public event SettingsClicked OpenSettings;
 
         public SearchBoxViewModel(List<string> users )
         {
@@ -36,6 +38,12 @@ namespace GitHistory.SearchControl
         {
             if (Search != null)
                 Search(this, new SearchEventArgs(CommitFilter));
+        }
+
+        public void SettingsClick()
+        {
+            if (OpenSettings != null)
+                OpenSettings(this, new EventArgs());
         }
     }
 }
