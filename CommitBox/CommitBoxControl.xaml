@@ -36,17 +36,23 @@
         <ListBox x:Name="lbCommits" SelectionChanged="ListBoxSelectionChanged"  ItemsSource="{Binding Commits}" AlternationCount="2" BorderThickness="0"  SelectionMode="Extended" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel   Orientation="Vertical" Margin="5 5 0 5">
-                        
-                        <TextBlock FontWeight="Bold" Foreground="{StaticResource colorDarkBlueForeGround}">
-                            <Run Text="{Binding Committer.Name, Mode=OneWay}" />
-                             <Run Text="  " />    
-                            <Run Text="{Binding Committer.When,  Mode=OneWay}" />
+                    <Grid Margin="5 5 0 5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                           
+                            <TextBlock FontWeight="Bold" Foreground="{StaticResource colorDarkBlueForeGround}" Text="{Binding Committer.Name, Mode=OneWay}" />
+                            <TextBlock Margin="5 0 0 0" Grid.Column="1" FontWeight="Bold" Foreground="{StaticResource colorDarkBlueForeGround}" Text="{Binding Committer.When.Date, StringFormat={}{0:dd/MM/yyyy},  Mode=OneWay}" />
+
+                         <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Foreground="{StaticResource colorDarkBlueForeGround}" Text="{Binding MessageShort,  Mode=OneWay}"  > 
+                         
                         </TextBlock>
-                        <TextBlock Foreground="{StaticResource colorDarkBlueForeGround}"> 
-                            <Run Text="{Binding MessageShort,  Mode=OneWay}" />
-                        </TextBlock>
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
