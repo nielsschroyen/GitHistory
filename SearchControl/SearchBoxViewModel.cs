@@ -24,14 +24,65 @@ namespace GitHistory.SearchControl
             get { return users; }
         }
 
-        public String SelectedUser { get; set; }
+        private string selectedUser;
+        public String SelectedUser
+        {
+            get { return selectedUser; }
+            set
+            {
+                if (!Equals(selectedUser, value))
+                {
+                    selectedUser = value;
+                    DoSearch();
+                }
+            }
+        }
 
-        public string Comment { get; set; }
+        private string comment;
+        public string Comment
+        {
+            get { return comment; }
+            set {
 
+                if (!Equals(comment, value))
+            {
+                comment = value;
+                DoSearch();
+            }
+            }
+        }
+
+        private DateTime? from;
+        public DateTime? From
+        {
+            get { return from; }
+            set
+            {
+                if (from != value)
+                {
+                    from = value;
+                    DoSearch();
+                }
+            }
+        }
+
+        private DateTime? to;
+        public DateTime? To
+        {
+            get { return to; }
+            set
+            {
+                if (to != value)
+                {
+                    to = value;
+                    DoSearch();
+                }
+            }
+        }
 
         private Func<Commit, bool> CommitFilter
         {
-            get { return new CommitFilterBuilder(SelectedUser, Comment).CreateCommitFilter(); }
+            get { return new CommitFilterBuilder(SelectedUser, Comment, From, To).CreateCommitFilter(); }
         }
 
         public void DoSearch()

@@ -39,22 +39,15 @@ namespace GitHistory.SearchControl
             }
         }
 
-        private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Search();
-        }
-
         private void ComboBoxKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
+           
                 var searchBoxViewModel = DataContext as SearchBoxViewModel;
                 if (searchBoxViewModel != null)
                 {
-                    searchBoxViewModel.Comment = ((TextBox) sender).Text;
-                    searchBoxViewModel.DoSearch();
+                    searchBoxViewModel.Comment = txtComment.Text;
                 }
-            }
+            
         }
     }
 }
