@@ -14,7 +14,7 @@ namespace GitHistory.Functions
        private readonly WebBrowser webBrowserControl;
        private readonly SearchBox searchBoxControl;
        private readonly CommitBoxControl commitBoxControl;
-       private readonly GitManager gitManager;
+       private GitManager gitManager;
        private CommitBoxViewModel commitBoxviewModel;
 
        public GitHistoryController(WebBrowser webBrowserControl, SearchBox searchBoxControl, CommitBoxControl commitBoxControl)
@@ -22,16 +22,14 @@ namespace GitHistory.Functions
            this.webBrowserControl = webBrowserControl;
            this.searchBoxControl = searchBoxControl;
            this.commitBoxControl = commitBoxControl;
-           gitManager = new GitManager();
-
            Init();
 
        }
 
        private void Init()
        {
+           gitManager = new GitManager();
            webBrowserControl.Navigate(gitManager.RepositoryLocation);
-           
            InitSearchBox();
            InitCommitBox();
        }
