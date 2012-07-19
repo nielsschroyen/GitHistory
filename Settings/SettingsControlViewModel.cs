@@ -26,6 +26,7 @@ namespace GitHistory.Settings
             {
                 Saved(this, new EventArgs());
             }
+           
         }
 
     }

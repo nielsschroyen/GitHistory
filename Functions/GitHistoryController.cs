@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using GitHistory.CommitBox;
 using GitHistory.SearchControl;
@@ -72,13 +73,18 @@ namespace GitHistory.Functions
            window.Show();
            window.Activate();
 
-           settingsControlViewModel.Saved += SettingsSaved;
+           settingsControlViewModel.Saved += (o, args) =>  SettingsSaved(window);
        }
 
-       void SettingsSaved(object sender, System.EventArgs e)
+       private void SettingsSaved(Window window)
        {
+           window.Cursor = Cursors.Wait;
            Init();
+           window.Cursor = Cursors.Arrow;
+           window.Close();
+        
        }
+
 
        void Search(object sender, SearchEventArgs e)
        {
