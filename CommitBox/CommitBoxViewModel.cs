@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using GitHistory.Functions;
 using LibGit2Sharp;
 
@@ -10,7 +7,20 @@ namespace GitHistory.CommitBox
     public class CommitBoxViewModel:NotifyPropertyChangedBase
     {
         private List<Commit> commits;
-        private Commit selectedCommit;
+
+        private List<Commit> selectedCommits;
+        public List<Commit> SelectedCommits
+        {
+            get { return selectedCommits; }
+            set { selectedCommits = value;
+
+            if (OnSelectedCommitsChanged != null && value != null)
+            {
+
+                OnSelectedCommitsChanged(this, new CommitChangedEventArgs(SelectedCommits));
+            }
+            }
+        }
 
         public delegate void SelectedCommitChanged(object sender, CommitChangedEventArgs e);
 
@@ -24,23 +34,12 @@ namespace GitHistory.CommitBox
             }
         }
 
-        public event SelectedCommitChanged OnSelectedCommitChanged;
+        public event SelectedCommitChanged OnSelectedCommitsChanged;
 
         public CommitBoxViewModel(List<Commit> commits )
         {
             this.commits = commits;
         }
 
-        public Commit SelectedCommit
-        {
-            get { return selectedCommit; }
-            set { selectedCommit = value;
-                if (OnSelectedCommitChanged != null && value != null)
-                {
-
-                    OnSelectedCommitChanged(this, new CommitChangedEventArgs(SelectedCommit));
-                }
-            }
-        }
     }
 }

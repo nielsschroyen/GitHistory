@@ -1,20 +1,21 @@
 using System;
+using System.Collections.Generic;
 using LibGit2Sharp;
 
 namespace GitHistory.CommitBox
 {
     public class CommitChangedEventArgs : EventArgs
     {
-        private readonly Commit commit;
+        private readonly List<Commit> commits;
 
-        public CommitChangedEventArgs(Commit commit)
+        public CommitChangedEventArgs(List<Commit> commits)
         {
-            this.commit = commit;
+            this.commits = commits;
         }
 
-        public Commit Commit
+        public List<Commit> Commits
         {
-            get { return commit; }
+            get { return commits; }
         }
     }
 }

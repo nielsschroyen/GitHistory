@@ -39,7 +39,7 @@ namespace GitHistory.Functions
        private void InitCommitBox()
        {
            commitBoxviewModel = new CommitBoxViewModel(gitManager.Commits);
-           commitBoxviewModel.OnSelectedCommitChanged += SelectedCommitChanged;
+           commitBoxviewModel.OnSelectedCommitsChanged += SelectedCommitsChanged;
            commitBoxControl.DataContext = commitBoxviewModel;
        }
 
@@ -93,9 +93,9 @@ namespace GitHistory.Functions
            commitBoxviewModel.Commits = searchCommits;
        }
 
-       void SelectedCommitChanged(object sender, CommitChangedEventArgs commitChangedEventArgs)
+       void SelectedCommitsChanged(object sender, CommitChangedEventArgs commitChangedEventArgs)
        {
-           webBrowserControl.LoadURL(WebCommitBuilder.CreateGitWebUrl(commitChangedEventArgs.Commit));
+           webBrowserControl.LoadURL(WebCommitBuilder.CreateGitWebUrl(commitChangedEventArgs.Commits));
        }
 
 

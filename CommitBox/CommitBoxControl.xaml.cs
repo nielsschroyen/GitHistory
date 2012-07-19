@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LibGit2Sharp;
 
 namespace GitHistory.CommitBox
 {
@@ -22,6 +23,22 @@ namespace GitHistory.CommitBox
         public CommitBoxControl()
         {
             InitializeComponent();
+        }
+
+        private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var commitBoxViewModel = DataContext as CommitBoxViewModel;
+
+            if(commitBoxViewModel != null)
+            {
+                var commits = new List<Commit>();
+                if (lbCommits.SelectedItems != null)
+                {
+                    commits.AddRange(lbCommits.SelectedItems.Cast<Commit>());
+                }
+                commitBoxViewModel.SelectedCommits = commits;
+            
+            }
         }
     }
 }

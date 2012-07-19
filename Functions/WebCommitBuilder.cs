@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using LibGit2Sharp;
 
 namespace GitHistory.Functions
@@ -6,16 +7,26 @@ namespace GitHistory.Functions
    public class WebCommitBuilder
     {
 
-       public static string CreateGitWebUrl(Commit commit)
+       public static string CreateGitWebUrl(List<Commit> commits)
        {
-           Commit firstCommit;
+           var nbCommits = commits.Count;
 
-           using (var repo = new Repository(Properties.Settings.Default.LocalGit))
+           if(nbCommits == 0)
            {
-               firstCommit = repo.Head.Commits.FirstOrDefault();
+               return WebAddress;
            }
-           if (firstCommit != null) return WebAddress + "/compare/" + commit.Sha + "..." + firstCommit.Sha;
-           return "bla";
+
+           if (nbCommits == 1)
+           {
+               return WebAddress + "/commit/" + commits.First().Sha;
+           }
+
+           var orderedCommits = commits.OrderBy(commit => commit.Committer.When);
+           var firstCommit = orderedCommits.First();
+           var lastCommit = orderedCommits.Last();
+
+           return WebAddress + "/compare/" + firstCommit.Sha + "..." + lastCommit.Sha;
+
        }
 
        public static string WebAddress
