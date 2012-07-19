@@ -1,4 +1,5 @@
-﻿using LibGit2Sharp;
+﻿using System.Linq;
+using LibGit2Sharp;
 
 namespace GitHistory.Functions
 {
@@ -7,13 +8,22 @@ namespace GitHistory.Functions
 
        public static string CreateGitWebUrl(Commit commit)
        {
+           Commit firstCommit;
 
-           return WebAddress + "/commit/" + commit.Sha;
+           using (var repo = new Repository(Properties.Settings.Default.LocalGit))
+           {
+               firstCommit = repo.Head.Commits.FirstOrDefault();
+           }
+           if (firstCommit != null) return WebAddress + "/compare/" + commit.Sha + "..." + firstCommit.Sha;
+           return "bla";
        }
 
        public static string WebAddress
        {
-           get { return Properties.Settings.Default.WebLocation; }
+           get
+           {
+               return Properties.Settings.Default.WebLocation;
+           }
        }
     }
 }

@@ -148,7 +148,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -180,14 +179,20 @@
   <ItemGroup>
     <Resource Include="github.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="NativeBinaries\amd64\git2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NativeBinaries\amd64\git2.pdb" />
+    <Content Include="NativeBinaries\x86\git2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NativeBinaries\x86\git2.pdb" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-if not exist "$(TargetDir)NativeBinaries" md "$(TargetDir)NativeBinaries"
-if not exist "$(TargetDir)NativeBinaries\x86" md "$(TargetDir)NativeBinaries\x86"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.9.5\NativeBinaries\x86\*.*" "$(TargetDir)NativeBinaries\x86"
-if not exist "$(TargetDir)NativeBinaries\amd64" md "$(TargetDir)NativeBinaries\amd64"
-xcopy /s /y "$(SolutionDir)packages\LibGit2Sharp.0.9.5\NativeBinaries\amd64\*.*" "$(TargetDir)NativeBinaries\amd64"</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -25,7 +25,13 @@ namespace GitHistory.Functions
         private void UpdateCache()
         {
             var firstCacheCommit = cachedCommits.FirstOrDefault();
-            var firstCommit = cachedCommits.FirstOrDefault();
+            Commit firstCommit;
+
+            using (var repo = new Repository(RepositoryLocation))
+            {
+                firstCommit = repo.Head.Commits.FirstOrDefault();
+            }
+
             if(firstCacheCommit == null || firstCommit == null || firstCommit.Committer.When != firstCacheCommit.Committer.When )
             {
                 using (var repo = new Repository(RepositoryLocation))
