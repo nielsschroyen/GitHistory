@@ -1,4 +1,4 @@
-﻿<Window x:Class="GitHistory.MainWindow"
+﻿<Window xmlns:my="clr-namespace:Awesomium.Windows.Controls;assembly=Awesomium.Windows.Controls"  x:Class="GitHistory.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:GitHistory="clr-namespace:GitHistory"
         xmlns:SearchControl="clr-namespace:GitHistory.SearchControl"
@@ -26,7 +26,7 @@
             <SearchControl:SearchBox x:Name="searchBoxControl" Margin="5" />
             <CommitBox:CommitBoxControl x:Name="commitBoxControl" Grid.Row="1" />
         </Grid>
-        <WebBrowser  x:Name="webBrowserControl" Grid.Column="2" >
-        </WebBrowser>
+        <my:WebControl x:Name="webBrowserControl" Grid.Column="2"/>
+       
     </Grid>
 </Window>

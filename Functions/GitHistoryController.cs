@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using Awesomium.Windows.Controls;
 using GitHistory.CommitBox;
 using GitHistory.SearchControl;
 using GitHistory.Settings;
@@ -12,13 +13,13 @@ namespace GitHistory.Functions
 {
    public class GitHistoryController
     {
-       private readonly WebBrowser webBrowserControl;
+       private readonly WebControl webBrowserControl;
        private readonly SearchBox searchBoxControl;
        private readonly CommitBoxControl commitBoxControl;
        private GitManager gitManager;
        private CommitBoxViewModel commitBoxviewModel;
 
-       public GitHistoryController(WebBrowser webBrowserControl, SearchBox searchBoxControl, CommitBoxControl commitBoxControl)
+       public GitHistoryController(WebControl webBrowserControl, SearchBox searchBoxControl, CommitBoxControl commitBoxControl)
        {
            this.webBrowserControl = webBrowserControl;
            this.searchBoxControl = searchBoxControl;
@@ -30,7 +31,7 @@ namespace GitHistory.Functions
        private void Init()
        {
            gitManager = new GitManager();
-           webBrowserControl.Navigate(gitManager.RepositoryLocation);
+           webBrowserControl.LoadURL(gitManager.RepositoryLocation);
            InitSearchBox();
            InitCommitBox();
        }
@@ -94,7 +95,7 @@ namespace GitHistory.Functions
 
        void SelectedCommitChanged(object sender, CommitChangedEventArgs commitChangedEventArgs)
        {
-           webBrowserControl.Navigate(WebCommitBuilder.CreateGitWebUrl(commitChangedEventArgs.Commit));
+           webBrowserControl.LoadURL(WebCommitBuilder.CreateGitWebUrl(commitChangedEventArgs.Commit));
        }
 
 
