@@ -31,7 +31,7 @@ namespace GitHistory.Functions
        private void Init()
        {
            gitManager = new GitManager();
-           webBrowserControl.LoadURL(gitManager.RepositoryLocation);
+           webBrowserControl.LoadURL(WebCommitBuilder.WebAddress);
            InitSearchBox();
            InitCommitBox();
        }
@@ -70,7 +70,9 @@ namespace GitHistory.Functions
                                 Height = 140,
                                 ResizeMode = ResizeMode.NoResize,
                                 Icon = bitmap
+                                
                             };
+
            window.Show();
            window.Activate();
 

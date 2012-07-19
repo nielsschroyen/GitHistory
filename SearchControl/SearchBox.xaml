@@ -9,9 +9,8 @@
 
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Search history"  Margin="0 0 0 5" FontSize="17" FontWeight="Bold" VerticalAlignment="Center" />
-            <Button  Margin="15 0 0 5" Content="Search"  Click="SearchClicked"/>
-            <Button  Margin="15 0 0 5" Content="Settings"  Click="SettingsClicked"/>
+            <TextBlock Text="Search history" Foreground="{StaticResource colorBlueForeground}"  Margin="0 0 0 5" FontSize="17" FontWeight="Bold" VerticalAlignment="Center" />
+            <Button  Margin="15 0 0 5" Content="Settings"   Click="SettingsClicked"/>
         </StackPanel>
 
         <Grid>
@@ -27,7 +26,7 @@
         <TextBlock Text="User:" Margin="0 0 5 5" VerticalAlignment="Center" />
         <ComboBox SelectedValue="{Binding SelectedUser}" ItemsSource="{Binding Users}" Grid.Column="1" Margin="0 0 5 5" />
         <TextBlock Text="Comment:" Grid.Row="1" Margin="0 0 5 5" VerticalAlignment="Center" />
-            <TextBox x:Name="txtComment" Text="{Binding Comment}" Margin="0 0 5 5" Grid.Row="1" Grid.Column="1" KeyUp="ComboBoxKeyUp"/>
+            <TextBox x:Name="txtComment" Text="{Binding Comment}" Margin="0 0 5 5" Grid.Row="1" Grid.Column="1" KeyUp="CommentKeyUp"/>
             <TextBlock x:Name="txtFrom" Text="From:" Grid.Row="2"  Margin="0 0 5 0" VerticalAlignment="Center" />
             <Grid Grid.Row="2" Grid.Column="2">
                 <Grid.ColumnDefinitions>

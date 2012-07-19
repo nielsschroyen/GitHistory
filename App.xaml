@@ -4,5 +4,27 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
+        
+        <!--COLORS-->
+        
+        <!--Blue background-->
+        <SolidColorBrush x:Key="colorBlueBackground"
+                     Color="#FFE6F1F6" />
+
+        <!--Blue foreground-->
+        <SolidColorBrush x:Key="colorBlueForeground"
+                     Color="#FF4183C4" />
+
+        <!--dark Blue foreground-->
+        <SolidColorBrush x:Key="colorDarkBlueForeGround"
+                     Color="#FF23414F" />
+
+        <!--green background-->
+        <SolidColorBrush x:Key="colorGreenBackground"
+                     Color="#FFDDFFDD" />
+        <!--red background-->
+        <SolidColorBrush x:Key="colorRedBackground"
+                     Color="#FFFFDDDD" />
+        
     </Application.Resources>
 </Application>

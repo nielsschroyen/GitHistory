@@ -1,33 +1,17 @@
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using GitHistory.Settings;
 
 namespace GitHistory.SearchControl
 {
     /// <summary>
     /// Interaction logic for SearchBox.xaml
     /// </summary>
-    public partial class SearchBox : UserControl
+    public partial class SearchBox
     {
         public SearchBox()
         {
             InitializeComponent();
-        }
-
-        private void SearchClicked(object sender, RoutedEventArgs e)
-        {
-            Search();
-        }
-
-        private void Search()
-        {
-            var searchBoxViewModel = DataContext as SearchBoxViewModel;
-            if (searchBoxViewModel != null)
-            {
-                searchBoxViewModel.DoSearch();
-            }
         }
 
         private void SettingsClicked(object sender, RoutedEventArgs e)
@@ -39,7 +23,7 @@ namespace GitHistory.SearchControl
             }
         }
 
-        private void ComboBoxKeyUp(object sender, KeyEventArgs e)
+        private void CommentKeyUp(object sender, KeyEventArgs e)
         {
            
                 var searchBoxViewModel = DataContext as SearchBoxViewModel;
