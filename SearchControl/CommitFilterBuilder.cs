@@ -7,11 +7,16 @@ namespace GitHistory.SearchControl
     {
        private readonly string user;
        private readonly string comment;
+       private readonly DateTime? to;
+       private readonly DateTime? from;
 
-       public CommitFilterBuilder(string user, string comment)
+
+       public CommitFilterBuilder(string user, string comment, DateTime? from, DateTime? to)
        {
            this.user = user;
            this.comment = comment;
+           this.to = to;
+           this.from = from;
        }
 
        public Func<Commit, bool> CreateCommitFilter()
@@ -22,7 +27,7 @@ namespace GitHistory.SearchControl
 
        public bool CommitFilter(Commit commit)
        {
-           return ContainsComment(commit) && ContainsUser(commit);
+           return ContainsComment(commit) && ContainsUser(commit) && BeforeDate(commit) && AfterDate(commit);
        }
 
        private bool ContainsComment(Commit commit)
@@ -39,6 +44,24 @@ namespace GitHistory.SearchControl
            if (!string.IsNullOrEmpty(user))
            {
                return commit.Committer.Name.Equals(user);
+           }
+           return true;
+       }
+
+       private bool AfterDate(Commit commit)
+       {
+           if (from != null)
+           {
+               return commit.Committer.When.Date >= from;
+           }
+           return true;
+       }
+
+       private bool BeforeDate(Commit commit)
+       {
+           if (to != null)
+           {
+               return commit.Committer.When.Date <= to;
            }
            return true;
        }
