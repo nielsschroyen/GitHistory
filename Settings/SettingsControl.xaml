@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Local repository: " Margin="0 0 0 5"/>
-        <TextBox Text="{Binding Local}" Grid.Column="1" Margin="0 0 0 5" />
+        <TextBox Text="{Binding Local, UpdateSourceTrigger= PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Margin="0 0 0 5" />
             <TextBlock Text="Web repository:" Grid.Row="1" Margin="0 0 0 5" />
             <TextBox Text="{Binding Web}" Grid.Column="1" Grid.Row="1" Margin="0 0 0 5"/>
         <Button x:Name="Save" Content="Save" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Click="SaveClick" />

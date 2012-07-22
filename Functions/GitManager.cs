@@ -13,32 +13,42 @@ namespace GitHistory.Functions
             InitCache();
         }
 
+        public bool IsEmpty { get; set; }
+
         private void InitCache()
         {
-            cachedCommits = new List<Commit>();
-            using (var repo = new Repository(RepositoryLocation))
+            cachedCommits = new List<Commit>();         
+
+            var repo = Repository.Init(RepositoryLocation);
+            
+            IsEmpty = repo.Info.IsEmpty;
+         
+            if(!IsEmpty)
             {
                 cachedCommits = repo.Head.Commits.ToList();
             }
+            repo.Dispose();
+            
         }
 
         private void UpdateCache()
         {
+            if(!IsEmpty)
+            {
             var firstCacheCommit = cachedCommits.FirstOrDefault();
             Commit firstCommit;
 
             using (var repo = new Repository(RepositoryLocation))
             {
                 firstCommit = repo.Head.Commits.FirstOrDefault();
-            }
+            
 
             if(firstCacheCommit == null || firstCommit == null || firstCommit.Committer.When != firstCacheCommit.Committer.When )
-            {
-                using (var repo = new Repository(RepositoryLocation))
-                {
-                    cachedCommits = repo.Head.Commits.ToList();
-                }
+            {               
+                    cachedCommits = repo.Head.Commits.ToList();                
             }
+}
+}
         }
 
 

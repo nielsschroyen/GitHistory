@@ -25,6 +25,10 @@ namespace GitHistory.Functions
            this.searchBoxControl = searchBoxControl;
            this.commitBoxControl = commitBoxControl;
            Init();
+           if (gitManager.IsEmpty)
+           {
+               OpenSettings(null, null);
+           }
 
        }
 
@@ -67,7 +71,7 @@ namespace GitHistory.Functions
                                 Content = new SettingsControl {DataContext = settingsControlViewModel},
                                 Title = "Settings",
                                 Width = 420,
-                                Height = 140,
+                                Height = 160,
                                 ResizeMode = ResizeMode.NoResize,
                                 Icon = bitmap
                                 
